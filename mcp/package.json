@@ -1,0 +1,21 @@
+{
+  "name": "campaign-brief-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Sports Campaign Brief Generator",
+  "type": "module",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "node --import tsx/esm src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start:compiled": "node dist/server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.54.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
