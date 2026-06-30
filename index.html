@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1100">
+<title>David Artzi — Sports Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0a0a0a;
+  --gray-1: #141414;
+  --gray-2: #222222;
+  --gray-3: #2a2a2a;
+  --gray-4: #333333;
+  --gray-5: #555555;
+  --white: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.55);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--black); color: var(--text-primary); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid var(--gray-3); }
+.nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--white); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; }
+.nav-links a:hover { color: var(--white); }
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; background: #000; }
+.hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; border-right: 0.5px solid #222; }
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+.hero-name { font-size: clamp(3rem, 5vw, 5rem); font-weight: 700; line-height: 1.05; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+.hero-title { font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.7); max-width: 420px; line-height: 1.7; margin-bottom: 2.5rem; }
+.hero-ctas { display: flex; gap: 1rem; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--white); color: var(--black); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--white); cursor: pointer; }
+.btn-secondary { display: inline-block; padding: 0.85rem 2rem; background: transparent; color: var(--white); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; }
+.hero-right { overflow: hidden; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+section { padding: 6rem 4rem; }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+.section-title { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; color: var(--white); }
+.about { background: var(--black); border-top: 0.5px solid var(--gray-3); }
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-bottom: 4rem; }
+.about-bio { font-size: 1.05rem; font-weight: 300; color: var(--text-secondary); line-height: 1.85; }
+.about-bio strong { font-weight: 600; color: var(--white); }
+.cred-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.credential-item { padding: 1rem 1.25rem; border-left: 2px solid var(--white); background: var(--gray-2); display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+.credential-item img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+.credential-item p { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+.credential-item span { font-size: 12px; color: var(--text-muted); }
+.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 0.5px solid var(--gray-3); border-left: 0.5px solid var(--gray-3); }
+.stat-item { padding: 2rem 1.5rem; border-right: 0.5px solid var(--gray-3); border-bottom: 0.5px solid var(--gray-3); }
+.stat-number { font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+.stat-desc { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.work { background: var(--black); border-top: 0.5px solid var(--gray-3); }
+.work-inner { max-width: 1100px; margin: 0 auto; }
+.work-block { margin-bottom: 5rem; }
+.work-block-header { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 0.5px solid var(--gray-3); padding-bottom: 1rem; margin-bottom: 2rem; }
+.work-block-title { font-size: 1.4rem; font-weight: 700; color: var(--white); }
+.work-block-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.athlete-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-3); border: 1px solid var(--gray-3); }
+.athlete-card { background: #111; padding: 1.75rem; text-align: center; display: flex; flex-direction: column; }
+.athlete-name { font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.athlete-league { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+.athlete-photo { width: 100%; height: 220px; object-fit: cover; object-position: center; border-radius: 4px; margin-bottom: 1.25rem; display: block; }
+.view-btn { width: 100%; padding: 0.85rem; background: var(--white); color: var(--black); font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 2px solid var(--white); cursor: pointer; margin-top: auto; display: block; flex-shrink: 0; }
+.view-btn:hover { opacity: 0.85; }
+.campaign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--gray-3); border: 1px solid var(--gray-3); }
+.campaign-card { background: var(--gray-1); padding: 2rem; }
+.campaign-tag { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); border: 0.5px solid var(--gray-3); padding: 3px 10px; margin-bottom: 1rem; }
+.campaign-title { font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+.campaign-desc { font-size: 13px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
+.resume { background: var(--black); border-top: 0.5px solid var(--gray-3); }
+.resume-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.press { background: #000; border-top: 0.5px solid var(--gray-3); }
+.press-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.press-quote { font-size: 1.4rem; font-weight: 400; color: var(--white); line-height: 1.5; font-style: italic; margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 2px solid rgba(255,255,255,0.3); }
+.press-source { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); padding-left: 1.5rem; }
+.press-feature { padding: 1.5rem; border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); margin-bottom: 1rem; }
+.press-feature-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.press-feature-title { font-size: 0.95rem; color: var(--white); margin-bottom: 0.5rem; }
+.press-link { display: inline-block; margin-top: 1rem; font-size: 12px; font-weight: 500; text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 0.5px solid var(--white); padding-bottom: 2px; }
+footer { padding: 2rem 4rem; border-top: 0.5px solid var(--gray-3); background: var(--black); display: flex; align-items: center; justify-content: space-between; }
+footer p { font-size: 12px; color: var(--text-muted); }
+.work-page { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--black); z-index: 99999; overflow-y: auto; }
+.work-page-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 4rem; }
+.back-btn { background: none; border: none; cursor: pointer; font-family: var(--font); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 2.5rem; padding: 0; display: flex; align-items: center; gap: 8px; }
+.wp-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.wp-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; text-align: center; color: var(--white); letter-spacing: -0.02em; }
+.camp-list { border-top: 0.5px solid var(--gray-3); }
+.camp-block { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.camp-block:last-child { border-bottom: none; }
+.camp-header { background: var(--gray-5); border-left: 5px solid var(--white); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-radius: 0 6px 6px 0; text-align: center; }
+.camp-header h3 { font-size: 22px; font-weight: 700; color: var(--white); margin: 0; }
+.camp-header-logo { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.camp-header-logo img { height: 30px; object-fit: contain; }
+.camp-text { font-size: 15px; color: var(--text-secondary); font-weight: 300; line-height: 1.8; margin-bottom: 1.5rem; }
+.camp-video-wrap { max-width: 640px; margin: 0 auto 1.5rem; }
+.camp-video { width: 100%; border-radius: 4px; background: #000; display: block; }
+.camp-video-portrait { height: 520px; width: auto; max-width: 100%; border-radius: 4px; background: #000; display: block; margin: 0 auto 1.5rem; }
+.camp-img { width: 100%; border-radius: 4px; object-fit: contain; background: #111; display: block; margin-top: 1rem; }
+.camp-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem; }
+.camp-grid-2 img { width: 100%; height: 300px; border-radius: 4px; object-fit: contain; background: #111; display: block; }
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 2rem; }
+  section { padding: 4rem 2rem; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 6rem 2rem 3rem; border-right: none; border-bottom: 0.5px solid #222; }
+  .hero-right { min-height: 300px; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .stat-bar { grid-template-columns: repeat(2, 1fr); }
+  .athlete-grid { grid-template-columns: repeat(2, 1fr); }
+  .campaign-grid { grid-template-columns: 1fr; }
+  .press-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">David Artzi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#resume">Résumé</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Athlete / Talent Marketing + Partnership Strategy</p>
+    <h1 class="hero-name">David<br>Artzi</h1>
+    <p class="hero-title">Eight-year sports marketing leader specializing in talent partnerships and brand strategy.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See my work</a>
+      <a href="#about" class="btn-secondary">About me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="assets/hero_stadium.jpg" alt="Stadium">
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Sports marketing at the intersection of talent, brand, and culture.</h2>
+        <p class="about-bio">Sports marketing and partnership strategy leader with <strong>8+ years</strong> driving athlete, influencer, and brand collaborations across CPG, sports, and entertainment sectors. Experienced advising brands on sponsorship strategy, cultural positioning, and talent partnerships while managing client relationships, deal structures, and cross-functional execution. Known for bridging talent representation, brand objectives, and cultural insight to deliver partnerships that drive measurable business impact.</p>
+      </div>
+      <div>
+        <p class="cred-label">Work Experience</p>
+        <div class="credential-item">
+          <img src="assets/weber_logo.png" alt="Weber Shandwick" style="background:#000;padding:2px;">
+          <div><p>Weber Shandwick</p><span>VP of Influencer Strategy, Athlete Partnerships</span></div>
+        </div>
+        <div class="credential-item">
+          <img src="assets/maxx_logo.png" alt="Maxx MGMT">
+          <div><p>Maxx MGMT</p><span>Director of Marketing &amp; Client Services</span></div>
+        </div>
+        <div class="credential-item">
+          <img src="assets/da_logo.png" alt="DA Athlete Marketing">
+          <div><p>DA Athlete Marketing</p><span>Founder &amp; Director</span></div>
+        </div>
+        <p class="cred-label" style="margin-top:1.25rem;">Education</p>
+        <div class="credential-item">
+          <img src="assets/au_logo.png" alt="American University">
+          <div><p>American University</p><span>M.S. — Sports Marketing Analytics &amp; Management &nbsp;·&nbsp; 2017–2018</span></div>
+        </div>
+        <div class="credential-item">
+          <img src="assets/ua_logo.png" alt="University of Arizona" style="background:#000;padding:2px;">
+          <div><p>University of Arizona</p><span>B.S. — Sports Sociology &nbsp;·&nbsp; 2012–2016</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-bar" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-item"><p class="stat-number">8+</p><p class="stat-desc">Years of experience</p></div>
+      <div class="stat-item"><p class="stat-number">40+</p><p class="stat-desc">Athlete Clients</p></div>
+      <div class="stat-item"><p class="stat-number">100+</p><p class="stat-desc">Brand Deals Executed</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-inner">
+    <p class="section-label" style="color:rgba(255,255,255,0.4);">Work</p>
+    <h2 class="section-title" style="margin-bottom:3rem;">Brand Partnerships</h2>
+
+    <div class="work-block">
+      <div class="work-block-header">
+        <h3 class="work-block-title">Talent Representation</h3>
+        <span class="work-block-sub">Maxx MGMT &nbsp;·&nbsp; DA Athlete Marketing</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-3);border:1px solid var(--gray-3);">
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/ubisoft.jpg" alt="Ubisoft" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Ubisoft</p>
+          <p class="athlete-league">Austin Ekeler — NFL</p>
+          <button class="view-btn" onclick="showWork('ubisoft')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/bestbuy_logo.png" alt="Best Buy" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Best Buy</p>
+          <p class="athlete-league">Austin Ekeler — NFL</p>
+          <button class="view-btn" onclick="showWork('bestbuy')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/shockdoctor_logo.png" alt="Shock Doctor" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Shock Doctor</p>
+          <p class="athlete-league">Austin Ekeler — NFL</p>
+          <button class="view-btn" onclick="showWork('shockdoctor')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/futp_logo.png" alt="Fuel Up to Play 60" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Fuel Up to Play 60</p>
+          <p class="athlete-league">Austin Ekeler &amp; Justin Herbert — NFL</p>
+          <button class="view-btn" onclick="showWork('fuelup')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/hiiii.png" alt="Hint Water" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Hint Water</p>
+          <p class="athlete-league">Kyle Juszczyk — NFL</p>
+          <button class="view-btn" onclick="showWork('hint')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/greenchef.jpeg" alt="Green Chef" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Green Chef</p>
+          <p class="athlete-league">Kyle Juszczyk — NFL</p>
+          <button class="view-btn" onclick="showWork('greenchef')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/eufy.png" alt="Eufy Security" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Eufy Security</p>
+          <p class="athlete-league">Multi-Athlete — NFL</p>
+          <button class="view-btn" onclick="showWork('eufy')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/raos_logo.png" alt="Rao's Homemade" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Rao's Homemade</p>
+          <p class="athlete-league">Tommy DeVito — NFL</p>
+          <button class="view-btn" onclick="showWork('raos')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/vitacoco_logo.png" alt="Vita Coco" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Vita Coco</p>
+          <p class="athlete-league">NIL Campaign — College Football 2023</p>
+          <button class="view-btn" onclick="showWork('vitacoco')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/usmc_logo.png" alt="USMC" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">U.S. Marine Corps</p>
+          <p class="athlete-league">NIL Campaign — Lead Like a Marine</p>
+          <button class="view-btn" onclick="showWork('usmc')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/caliper.png" alt="Caliper Covers" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Caliper Covers</p>
+          <p class="athlete-league">Austin Ekeler — NFL</p>
+          <button class="view-btn" onclick="showWork('caliper')">VIEW WORK</button>
+        </div>
+
+        <div class="athlete-card">
+          <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="assets/stumble.webp" alt="Stumble Guys" style="max-height:100%;max-width:100%;object-fit:contain;">
+          </div>
+          <p class="athlete-name">Stumble Guys</p>
+          <p class="athlete-league">Austin Ekeler — NFL</p>
+          <button class="view-btn" onclick="showWork('stumbleguys')">VIEW WORK</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="work-block" style="margin-top:4rem;">
+      <div class="work-block-header">
+        <h3 class="work-block-title">Brand Campaigns — Agency</h3>
+        <span class="work-block-sub">Weber Shandwick</span>
+      </div>
+      <div class="campaign-grid">
+        <div class="campaign-card">
+          <span class="campaign-tag">Weber Shandwick</span>
+          <div style="height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;"><img src="assets/KIND-Embed.png" alt="KIND Bar" style="max-height:70px;max-width:180px;object-fit:contain;"></div>
+          <h4 class="campaign-title">KIND Bar x Justin Herbert</h4>
+          <p class="campaign-desc">Justin Herbert partnered with KIND Bar for a campaign built around his personal values, bringing the brand's ethos to life through a charity activation with Paws for Life K9. Managed athlete integration, creative direction, and content delivery on behalf of the agency.</p>
+          <img style="width:100%;height:320px;border-radius:4px;object-fit:contain;background:#111;display:block;margin-bottom:1rem;" src="assets/kind_justin_photo.png" alt="KIND Bar">
+          <video style="width:100%;border-radius:4px;max-height:300px;background:#000;display:block;" controls>
+            <source src="assets/kind_justin_herbert.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="campaign-card">
+          <span class="campaign-tag">Weber Shandwick</span>
+          <div style="height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;"><img src="assets/Cheez-It-Logo.png" alt="Cheez-It" style="max-height:80px;max-width:240px;object-fit:contain;"></div>
+          <h4 class="campaign-title">Cheez-It x Kon Knueppel</h4>
+          <p class="campaign-desc">Helped negotiate and bridge the talent deal between NBA rookie Kon Knueppel and Cheez-It for their limited-edition "Kon's Double Double Cheez-It Bundle." The bundle sold out instantly on launch day.</p>
+          <img style="width:100%;height:320px;border-radius:4px;object-fit:contain;background:#111;display:block;margin-bottom:1rem;" src="assets/kon_bundle.png" alt="Kon Bundle">
+          <img style="width:100%;height:320px;border-radius:4px;object-fit:contain;background:#111;display:block;" src="assets/kon_ig.jpeg" alt="Kon IG">
+        </div>
+      </div>
+      <div class="campaign-card" style="margin-top:1px;">
+        <span class="campaign-tag">Weber Shandwick</span>
+        <div style="height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;"><img src="assets/samsung_logo.png" alt="Samsung" style="max-height:50px;max-width:200px;object-fit:contain;"></div>
+        <h4 class="campaign-title">Samsung — TV Transfer Portal</h4>
+        <p class="campaign-desc">Led sourcing and negotiation for the athlete roster behind Samsung's "TV Transfer Portal" activation at the 2026 College Football National Championship. Managed contracts and real-time talent deliverables for a program that rewarded 900+ fans in a five-hour window. Worked closely with PR and Legal to connect athlete-driven content with Samsung's brand goals, generating strong social engagement and press coverage during one of college football's biggest nights.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+          <img style="width:100%;height:320px;border-radius:4px;object-fit:contain;background:#111;display:block;" src="assets/samsungg.png" alt="Samsung 1">
+          <img style="width:100%;height:320px;border-radius:4px;object-fit:contain;background:#111;display:block;" src="assets/samsung2.png" alt="Samsung 2">
+        </div>
+        <a href="https://news.samsung.com/us/samsung-introduces-the-first-ever-tv-transfer-portal-to-elevate-college-football-fans-championship-viewing-experience/" target="_blank" class="press-link">Read the press release →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resume" id="resume">
+  <div class="resume-inner">
+    <p class="section-label">Résumé</p>
+    <h2 class="section-title" style="margin-bottom:1rem;">Professional Résumé</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.85);font-weight:300;margin-bottom:2rem;">View or download a full copy below.</p>
+    <div style="margin-bottom:2rem;">
+      <a href="assets/David_Artzi_Resume.pdf" download="David_Artzi_Resume.pdf" class="btn-primary">Download Résumé ↓</a>
+    </div>
+    <iframe src="assets/David_Artzi_Resume.pdf" style="width:100%;height:900px;border:none;border-radius:4px;" title="David Artzi Resume"></iframe>
+  </div>
+</section>
+
+<section class="press" id="press">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">Press</p>
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Featured Press</h2>
+    <div style="display:flex;flex-direction:column;gap:1px;border:0.5px solid var(--gray-3);">
+      <a href="https://tucson.com/sports/local/sabino-high-school-ua-grad-david-artzi-helping-athletes-build-brands-during-pandemic/article_8a488802-b35b-5dcf-9b03-f22748f14b9c.html" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:2.25rem 2.5rem;background:#111;text-decoration:none;gap:2rem;">
+        <div style="display:flex;align-items:center;gap:2rem;">
+          <img src="assets/arizona_daily_star_logo.jpeg" alt="Arizona Daily Star" style="height:40px;width:80px;object-fit:contain;flex-shrink:0;opacity:0.9;">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Arizona Daily Star &nbsp;·&nbsp; March 2021</p>
+            <p style="font-size:1.15rem;font-weight:600;color:#ffffff;line-height:1.4;">"Sabino High School, UA grad David Artzi helping athletes build brands during pandemic"</p>
+          </div>
+        </div>
+        <span style="font-size:22px;color:rgba(255,255,255,0.3);flex-shrink:0;">→</span>
+      </a>
+      <a href="https://frontofficesports.com/austin-ekeler-youtube/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:2.25rem 2.5rem;background:#111;text-decoration:none;gap:2rem;">
+        <div style="display:flex;align-items:center;gap:2rem;">
+          <img src="assets/front-office-sports-logo-vector.png" alt="Front Office Sports" style="height:40px;width:80px;object-fit:contain;flex-shrink:0;opacity:0.9;">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Front Office Sports &nbsp;·&nbsp; April 2019</p>
+            <p style="font-size:1.15rem;font-weight:600;color:#ffffff;line-height:1.4;">"Chargers' Ekeler Takes to YouTube to Build His Brand"</p>
+          </div>
+        </div>
+        <span style="font-size:22px;color:rgba(255,255,255,0.3);flex-shrink:0;">→</span>
+      </a>
+      <a href="https://frontofficesports.com/coronavirus-hiatuses-provide-athletes-digital-marketing-opportunities/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:2.25rem 2.5rem;background:#111;text-decoration:none;gap:2rem;">
+        <div style="display:flex;align-items:center;gap:2rem;">
+          <img src="assets/front-office-sports-logo-vector.png" alt="Front Office Sports" style="height:40px;width:80px;object-fit:contain;flex-shrink:0;opacity:0.9;">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.6rem;">Front Office Sports &nbsp;·&nbsp; March 2020</p>
+            <p style="font-size:1.15rem;font-weight:600;color:#ffffff;line-height:1.4;">"Coronavirus Hiatuses Provide Athletes Digital Marketing Opportunities"</p>
+          </div>
+        </div>
+        <span style="font-size:22px;color:rgba(255,255,255,0.3);flex-shrink:0;">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#000;border-top:0.5px solid var(--gray-3);padding:1.5rem 4rem;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+    <div>
+      <p class="section-label">Contact</p>
+      <h2 class="section-title" style="margin-bottom:1rem;">Let's Connect.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <a href="mailto:dartzi93@gmail.com" style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;background:#111;border:0.5px solid var(--gray-3);text-decoration:none;transition:border-color 0.2s;">
+        <div>
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">Email</p>
+          <p style="font-size:1rem;font-weight:500;color:#ffffff;">dartzi93@gmail.com</p>
+        </div>
+        <span style="font-size:20px;color:rgba(255,255,255,0.3);">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/david-artzi" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;background:#111;border:0.5px solid var(--gray-3);text-decoration:none;">
+        <div>
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">LinkedIn</p>
+          <p style="font-size:1rem;font-weight:500;color:#ffffff;">linkedin.com/in/david-artzi</p>
+        </div>
+        <span style="font-size:20px;color:rgba(255,255,255,0.3);">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 David Artzi &nbsp;·&nbsp; Chicago, IL</p>
+  <div style="display:flex;gap:2rem;">
+    <a href="mailto:dartzi93@gmail.com" style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;">dartzi93@gmail.com</a>
+    <a href="https://www.linkedin.com/in/david-artzi" target="_blank" style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- UBISOFT -->
+<div id="work-ubisoft" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler — NFL</p>
+    <h2 class="wp-title">Ubisoft — Tom Clancy's Rainbow Six Siege</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/ubisoft.jpg" alt="Ubisoft" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Gaming</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Co-Branded Campaign w/ Maxx Crosby</p>
+        <p class="camp-text">Brought together Austin Ekeler and Maxx Crosby for a co-branded campaign with Ubisoft around the launch of Tom Clancy's Rainbow Six Siege. Oversaw talent coordination, creative direction, and full campaign delivery across both athletes.</p>
+        <div style="width:520px;margin:0 auto 1.5rem;"><video style="width:100%;border-radius:4px;background:#000;display:block;" controls><source src="assets/ubisoft_rainbow_six.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BEST BUY -->
+<div id="work-bestbuy" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler — NFL</p>
+    <h2 class="wp-title">Best Buy x Bleacher Report</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/bestbuy_logo.png" alt="Best Buy" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Retail</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">NFL Wildcard Playoffs Activation</p>
+        <p class="camp-text">Partnered Austin Ekeler with Best Buy and Bleacher Report to create content tied to the 2021-2022 NFL Wildcard Playoffs. Led talent management, creative alignment, and end-to-end campaign execution.</p>
+        <div class="camp-video-wrap"><video class="camp-video" controls><source src="assets/bestbuy_wildcard.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALIPER COVERS -->
+<div id="work-caliper" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler — NFL</p>
+    <h2 class="wp-title">Caliper Covers x Austin Ekeler Foundation</h2>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Community</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Brand + Charity Integration</p>
+        <p class="camp-text">Connected Caliper Covers with Austin Ekeler and his foundation for a purpose-driven campaign blending brand visibility with community impact. Handled all aspects of talent logistics, messaging alignment, and content delivery.</p>
+        <div class="camp-video-wrap"><video class="camp-video" controls><source src="assets/caliper_covers.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STUMBLE GUYS -->
+<div id="work-stumbleguys" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler — NFL</p>
+    <h2 class="wp-title">Stumble Guys — Game Launch</h2>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Gaming</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Game Launch Activation</p>
+        <p class="camp-text">Tapped Austin Ekeler to help Stumble Guys celebrate their new game launch, leaning into his personality and fanbase to drive authentic engagement. Managed the full talent partnership from briefing through final content delivery.</p>
+        <div class="camp-video-wrap"><video class="camp-video" controls><source src="assets/stumble_guys.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOCK DOCTOR -->
+<div id="work-shockdoctor" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler — NFL</p>
+    <h2 class="wp-title">Shock Doctor</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/shockdoctor_logo.png" alt="Shock Doctor" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Sports Gear</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Multi-Year Brand Partnership</p>
+        <p class="camp-text">Negotiated a multi-year partnership deal between Austin Ekeler and Shock Doctor, securing long-term brand alignment across product campaigns, social content, and giveaway activations throughout his tenure with the LA Chargers.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <img src="assets/shock_ig1.png" alt="Shock Doctor 1" style="width:100%;height:auto;border-radius:4px;display:block;">
+          <img src="assets/shock_ig2.png" alt="Shock Doctor 2" style="width:100%;height:auto;border-radius:4px;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FUEL UP TO PLAY 60 -->
+<div id="work-fuelup" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Austin Ekeler &amp; Justin Herbert — NFL</p>
+    <h2 class="wp-title">NFL — Fuel Up to Play 60 x Dairy Alliance</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/futp_logo.png" alt="Fuel Up to Play 60" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">NFL / Health</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">National Youth Health Initiative</p>
+        <p class="camp-text">Placed Austin Ekeler and Justin Herbert as featured athletes in the NFL's Fuel Up to Play 60 campaign in partnership with the Dairy Alliance, a national youth health initiative encouraging kids to eat well and stay active. Managed all talent integration, messaging alignment, and content delivery across both athletes.</p>
+        <div class="camp-video-wrap" style="max-width:800px;"><video class="camp-video" controls><source src="assets/fuel_up_play60.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HINT WATER -->
+<div id="work-hint" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Kyle Juszczyk — NFL</p>
+    <h2 class="wp-title">Hint Water</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/hiiii.png" alt="Hint Water" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">CPG / Lifestyle</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Couples Campaign w/ Kristin Juszczyk</p>
+        <p class="camp-text">Kyle Juszczyk and his wife Kristin partnered with Hint Water for a lifestyle-driven hydration campaign leaning into their shared fitness routine and off-season lifestyle. Managed talent coordination, content direction, and full campaign delivery across both partners.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <img src="assets/hint_ig1.png" alt="Hint Water 1" style="width:100%;height:auto;border-radius:4px;display:block;">
+            <video style="width:100%;border-radius:4px;background:#000;display:block;" controls><source src="assets/hint_water.mp4" type="video/mp4"></video>
+          </div>
+          <img src="assets/hint_workout.png" alt="Hint Water 2" style="width:100%;height:auto;border-radius:4px;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GREEN CHEF -->
+<div id="work-greenchef" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Kyle Juszczyk — NFL</p>
+    <h2 class="wp-title">Green Chef</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/greenchef.jpeg" alt="Green Chef" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">CPG / Food</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Athlete Meal Kit Integration</p>
+        <p class="camp-text">Green Chef partnered with Kyle Juszczyk to position the meal kit brand around his on-the-go NFL lifestyle and need for quick, healthy nutrition. The campaign included organic social content and a custom discount code driving direct conversions.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <img src="assets/greenchef1.jpg" alt="Green Chef 1" style="width:100%;height:auto;border-radius:4px;display:block;">
+          <img src="assets/greenchef2.png" alt="Green Chef 2" style="width:100%;height:auto;border-radius:4px;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EUFY SECURITY -->
+<div id="work-eufy" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Multi-Athlete Campaign — NFL</p>
+    <h2 class="wp-title">Eufy Security — NFL Roster Campaign</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/eufy.png" alt="Eufy Security" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <span style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);padding:3px 10px;margin-bottom:0.75rem;">Tech / Smart Home</span>
+        <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Multi-Athlete NIL & Influencer Campaign</p>
+        <p class="camp-text">Sourced and managed a roster of four NFL athletes — Kyle Juszczyk, Scotty Miller, Robert Griffin III, and Keanu Neal — for Eufy Security's product awareness campaign. Each athlete created authentic content around Eufy's smart home ecosystem, reaching a combined audience of millions of NFL fans across social platforms.</p>
+
+        <!-- Athlete Roster -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;">
+          <div style="background:#141414;border-radius:4px;padding:1rem 1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+            <p style="font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;">Kyle Juszczyk</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;">FB — San Francisco 49ers</p>
+          </div>
+          <div style="background:#141414;border-radius:4px;padding:1rem 1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+            <p style="font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;">Scotty Miller</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;">WR — Tampa Bay Buccaneers</p>
+          </div>
+          <div style="background:#141414;border-radius:4px;padding:1rem 1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+            <p style="font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;">Robert Griffin III</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;">Former NFL QB &amp; Heisman Winner</p>
+          </div>
+          <div style="background:#141414;border-radius:4px;padding:1rem 1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+            <p style="font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;">Keanu Neal</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.05em;">S — Dallas Cowboys</p>
+          </div>
+        </div>
+
+        <!-- Row 1: 3 portrait items — locked to 9/16 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Scotty Miller</p>
+            <video style="width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:4px;background:#000;display:block;" controls><source src="assets/eufymiller.mov" type="video/mp4"></video>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Robert Griffin III</p>
+            <video style="width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:4px;background:#000;display:block;" controls><source src="assets/eufygriffin.MOV" type="video/mp4"></video>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Robert Griffin III</p>
+            <img src="assets/eufyrgiii.jpg" alt="RG3 x Eufy" style="width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:4px;display:block;">
+          </div>
+        </div>
+
+        <!-- Row 2: 2 landscape items — locked to 3/2 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Kyle Juszczyk</p>
+            <img src="assets/eufy_ig.png" alt="Kyle Juszczyk x Eufy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px;display:block;">
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">Keanu Neal</p>
+            <img src="assets/keanu_eufy.png" alt="Keanu Neal x Eufy" style="width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RAO'S HOMEMADE -->
+<div id="work-raos" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Tommy DeVito — NFL</p>
+    <h2 class="wp-title">Rao's Homemade — "Tommy Cutlets"</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/raos_logo.png" alt="Rao's Homemade" style="height:100px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <p class="camp-text">In late 2023, a narrow window of opportunity emerged around Tommy DeVito's viral moment as the Italian-American QB lighting up the New York Giants' late-season run. The partnership between Tommy and Rao's Homemade was brokered and executed quickly, leaning fully into his cultural identity, filming an intimate shoot at the DeVito family home in New Jersey with Tommy and his mother Lexi, building a custom "Tommy Cutlets" recipe hosted on Rao's.com, and securing three PR opportunities for the brand. The result: $245,000 in validated brand exposure value with coverage in the New York Post, Bleacher Report, and USA Today.</p>
+        <div style="display:grid;grid-template-columns:280px 1fr;gap:2.5rem;align-items:start;margin-bottom:2rem;">
+          <video style="width:100%;border-radius:4px;background:#000;display:block;" controls><source src="assets/raos_tommy.mp4" type="video/mp4"></video>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="background:#141414;border-radius:4px;padding:1.5rem;">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:0.75rem;">Results</p>
+              <p style="font-size:2.5rem;font-weight:700;color:#ffffff;margin:0;letter-spacing:-0.02em;">$245K</p>
+              <p style="font-size:12px;color:rgba(255,255,255,0.55);margin:6px 0 0;">Brand exposure value — per Apex Marketing</p>
+            </div>
+            <div style="background:#141414;border-radius:4px;padding:1.5rem;">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:1rem;">Deliverables</p>
+              <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 2rem;">
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>Instagram post (12 months)</li>
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>3 PR opportunities for Rao's</li>
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>"Tommy Cutlets" recipe on Rao's.com</li>
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>30-day sauce exclusivity</li>
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>60-min shoot at family home</li>
+                <li style="font-size:13px;color:rgba(255,255,255,0.85);padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:rgba(255,255,255,0.3);">—</span>6-month usage rights</li>
+              </ul>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <img src="assets/devitonyp.png" alt="Tommy DeVito x Rao's" style="width:100%;aspect-ratio:1194/884;object-fit:cover;object-position:top;border-radius:4px;display:block;">
+              <img src="assets/raojeff.png" alt="Jeff Eisenband x Rao's" style="width:100%;aspect-ratio:1194/884;object-fit:cover;object-position:top;border-radius:4px;display:block;">
+            </div>
+          </div>
+        </div>
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem;">Press Coverage</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <a href="https://nypost.com/2023/12/22/sports/tommy-devito-partners-with-raos-as-off-field-brand-takes-shape/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:#141414;border:0.5px solid #333;text-decoration:none;">
+            <div>
+              <p style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;">New York Post</p>
+              <p style="font-size:14px;color:#ffffff;font-weight:500;">"Tommy DeVito partners with Rao's as off-field brand takes shape"</p>
+            </div>
+            <span style="font-size:18px;color:rgba(255,255,255,0.3);margin-left:1.5rem;">→</span>
+          </a>
+          <a href="https://bleacherreport.com/articles/10102233-giants-tommy-devito-agrees-to-endorsement-deal-with-raos-homemade-sauce" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:#141414;border:0.5px solid #333;text-decoration:none;">
+            <div>
+              <p style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;">Bleacher Report</p>
+              <p style="font-size:14px;color:#ffffff;font-weight:500;">"Giants' Tommy DeVito Agrees to Endorsement Deal with Rao's Homemade Sauce"</p>
+            </div>
+            <span style="font-size:18px;color:rgba(255,255,255,0.3);margin-left:1.5rem;">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="work-usmc" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">NIL Campaign — U.S. Marine Corps</p>
+    <h2 class="wp-title">"Lead Like a Marine"</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:3rem;">
+      <img src="assets/usmc_logo.png" alt="U.S. Marine Corps" style="height:90px;object-fit:contain;opacity:0.9;border:1.5px solid rgba(255,255,255,0.4);border-radius:4px;padding:10px;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:stretch;">
+          <video style="width:100%;height:100%;object-fit:cover;border-radius:4px;background:#000;display:block;" controls><source src="assets/davismarine.mp4" type="video/mp4"></video>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            <p class="camp-text" style="margin-bottom:0;">Partnered with the United States Marine Corps to execute the "Lead Like a Marine" initiative, an aspirational brand campaign targeting prospect-aged youth. Directed and produced a content suite featuring a University of Tennessee student-athlete, shifting the narrative away from standard military recruitment toward a focused conversation on elite leadership, discipline, and personal growth.</p>
+            <div style="background:#141414;border-radius:4px;padding:1.75rem;">
+              <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1.5rem;">Strategy & Execution</p>
+              <div style="display:flex;flex-direction:column;gap:1.25rem;">
+                <div style="padding-left:1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+                  <p style="font-size:14px;font-weight:600;color:#fff;margin-bottom:0.4rem;">Niche Integration</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;">Selected core Marine Corps leadership traits that mirrored the high-performance demands of a Division I student-athlete, creating a natural crossover for the target audience.</p>
+                </div>
+                <div style="padding-left:1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+                  <p style="font-size:14px;font-weight:600;color:#fff;margin-bottom:0.4rem;">Multi-Phase Rollout</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;">Directed a multi-platform digital cadence starting with an interactive Instagram Q&A teaser, followed by long-form video content, and concluding with a reflective recap post.</p>
+                </div>
+                <div style="padding-left:1.25rem;border-left:2px solid rgba(255,255,255,0.15);">
+                  <p style="font-size:14px;font-weight:600;color:#fff;margin-bottom:0.4rem;">Activity-Based Feature</p>
+                  <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;">Produced a long-form interview anchored by an in-person training session, translating military values into relatable stories about athletic grit and community leadership.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="work-vitacoco" class="work-page">
+  <div class="work-page-inner">
+    <button class="back-btn" onclick="hideWork()">&#8592; Back</button>
+    <p class="wp-eyebrow">Group Campaign — NIL</p>
+    <h2 class="wp-title">Vita Coco</h2>
+    <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
+      <img src="assets/vitacoco_logo.png" alt="Vita Coco" style="height:80px;object-fit:contain;">
+    </div>
+    <div class="camp-list">
+      <div class="camp-block" style="border-top:none;padding-top:0;">
+        <p class="camp-text" style="text-align:center;max-width:700px;margin:0 auto 2.5rem;">Vita Coco's first-ever NIL campaign, executed for the 2023 college football kickoff season. Sourced and managed a roster of athletes from Penn State, Ohio State, Wake Forest, Coastal Carolina, and Tennessee, coordinating talent deals, content direction, and campaign delivery across all schools.</p>
+        <div style="columns:2;column-gap:16px;">
+          <img src="assets/vitacoco1.jpg" alt="Vita Coco 1" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+          <img src="assets/vitacoco2.jpg" alt="Vita Coco 2" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+          <img src="assets/vitacoco3.jpg" alt="Vita Coco 3" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+          <img src="assets/vitacoco4.png" alt="Vita Coco 4" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+          <img src="assets/vc2.jpeg" alt="Vita Coco 5" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+          <img src="assets/vc3.jpeg" alt="Vita Coco 6" style="width:100%;height:auto;border-radius:4px;display:block;margin-bottom:16px;break-inside:avoid;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showWork(athlete) {
+  var page = document.getElementById('work-' + athlete);
+  if (page) {
+    page.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+    history.pushState({ work: athlete }, '');
+  }
+}
+function hideWork() {
+  var pages = document.querySelectorAll('.work-page');
+  pages.forEach(function(p) { p.style.display = 'none'; });
+  document.body.style.overflow = '';
+}
+window.addEventListener('popstate', function(e) {
+  hideWork();
+});
+</script>
+</body>
+</html>
