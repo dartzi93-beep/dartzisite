@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>David Artzi — Sports Marketing</title>
+<meta name="description" content="David Artzi is a sports marketing leader with 8+ years driving athlete, influencer, and brand partnerships across CPG, sports, and entertainment. VP of Influencer Strategy, Athlete Partnerships at Weber Shandwick.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="David Artzi — Sports Marketing">
+<meta property="og:description" content="Sports marketing leader specializing in athlete, influencer, and brand partnership strategy.">
+<meta property="og:image" content="https://dartziportfolio.netlify.app/assets/hero_stadium.jpg">
+<meta property="og:url" content="https://dartziportfolio.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="David Artzi — Sports Marketing">
+<meta name="twitter:description" content="Sports marketing leader specializing in athlete, influencer, and brand partnership strategy.">
+<meta name="twitter:image" content="https://dartziportfolio.netlify.app/assets/hero_stadium.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-weight='700' font-size='54' fill='%23ffffff' text-anchor='middle'%3EDA%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,6 +38,13 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; }
 .nav-links a:hover { color: var(--white); }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 0; z-index: 110; }
+.nav-toggle span { display: block; width: 100%; height: 2px; background: var(--white); transition: transform 0.25s ease, opacity 0.25s ease; }
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90; }
+.nav-overlay.open { display: block; }
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; background: #000; }
 .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; border-right: 0.5px solid #222; }
 .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
@@ -105,7 +123,11 @@ footer p { font-size: 12px; color: var(--text-muted); }
 .camp-grid-2 img { width: 100%; height: 300px; border-radius: 4px; object-fit: contain; background: #111; display: block; }
 @media (max-width: 900px) {
   nav { padding: 1.25rem 2rem; }
-  .nav-links { gap: 1.5rem; }
+  .nav-toggle { display: flex; }
+  .nav-links { position: fixed; top: 0; right: -100%; width: 70%; max-width: 300px; height: 100vh; flex-direction: column; align-items: flex-start; gap: 0; background: var(--black); border-left: 0.5px solid var(--gray-3); padding: 6rem 2rem 2rem; transition: right 0.3s ease; z-index: 100; }
+  .nav-links.open { right: 0; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 1rem 0; font-size: 14px; border-bottom: 0.5px solid var(--gray-3); }
   section { padding: 4rem 2rem; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 6rem 2rem 3rem; border-right: none; border-bottom: 0.5px solid #222; }
@@ -129,8 +151,6 @@ footer p { font-size: 12px; color: var(--text-muted); }
 }
 @media (max-width: 600px) {
   nav { padding: 1rem 1.25rem; }
-  .nav-links { gap: 0.85rem; }
-  .nav-links a { font-size: 11px; letter-spacing: 0.02em; }
   section { padding: 3rem 1.25rem; }
   .hero-left { padding: 5rem 1.25rem 2.5rem; }
   .hero-ctas { flex-direction: column; }
@@ -152,7 +172,10 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
 <nav>
   <a href="#" class="nav-logo">David Artzi</a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#resume">Résumé</a></li>
@@ -160,6 +183,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+<div class="nav-overlay" id="nav-overlay"></div>
 
 <section class="hero" id="home">
   <div class="hero-left">
@@ -835,6 +859,26 @@ function hideWork() {
 }
 window.addEventListener('popstate', function(e) {
   hideWork();
+});
+
+var navToggle = document.getElementById('nav-toggle');
+var navLinks = document.getElementById('nav-links');
+var navOverlay = document.getElementById('nav-overlay');
+function closeNav() {
+  navToggle.classList.remove('active');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navLinks.classList.remove('open');
+  navOverlay.classList.remove('open');
+}
+navToggle.addEventListener('click', function() {
+  var isOpen = navLinks.classList.toggle('open');
+  navToggle.classList.toggle('active', isOpen);
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  navOverlay.classList.toggle('open', isOpen);
+});
+navOverlay.addEventListener('click', closeNav);
+navLinks.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', closeNav);
 });
 </script>
 </body>
