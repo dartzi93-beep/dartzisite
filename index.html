@@ -60,7 +60,7 @@ section { padding: 6rem 4rem; }
 .section-title { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; color: var(--white); }
 .about { background: var(--black); border-top: 0.5px solid var(--gray-3); }
 .about-inner { max-width: 1100px; margin: 0 auto; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-bottom: 4rem; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .about-bio { font-size: 1.05rem; font-weight: 300; color: var(--text-secondary); line-height: 1.85; }
 .about-bio strong { font-weight: 600; color: var(--white); }
 .cred-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
@@ -68,10 +68,6 @@ section { padding: 6rem 4rem; }
 .credential-item img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
 .credential-item p { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
 .credential-item span { font-size: 12px; color: var(--text-muted); }
-.stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 0.5px solid var(--gray-3); border-left: 0.5px solid var(--gray-3); }
-.stat-item { padding: 2rem 1.5rem; border-right: 0.5px solid var(--gray-3); border-bottom: 0.5px solid var(--gray-3); }
-.stat-number { font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-.stat-desc { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
 .work { background: var(--black); border-top: 0.5px solid var(--gray-3); }
 .work-inner { max-width: 1100px; margin: 0 auto; }
 .work-block { margin-bottom: 5rem; }
@@ -133,7 +129,6 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .hero-left { padding: 6rem 2rem 3rem; border-right: none; border-bottom: 0.5px solid #222; }
   .hero-right { min-height: 300px; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .stat-bar { grid-template-columns: repeat(2, 1fr) !important; }
   .athlete-grid { grid-template-columns: repeat(2, 1fr); }
   .campaign-grid { grid-template-columns: 1fr; }
   .press-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -155,7 +150,6 @@ footer p { font-size: 12px; color: var(--text-muted); }
   .hero-left { padding: 5rem 1.25rem 2.5rem; }
   .hero-ctas { flex-direction: column; }
   .btn-primary, .btn-secondary { text-align: center; }
-  .stat-bar { grid-template-columns: 1fr !important; }
   .athlete-grid { grid-template-columns: 1fr; }
   .talent-grid-4 { grid-template-columns: 1fr !important; }
   .eufy-roster { grid-template-columns: 1fr !important; }
@@ -233,11 +227,6 @@ footer p { font-size: 12px; color: var(--text-muted); }
         </div>
       </div>
     </div>
-    <div class="stat-bar">
-      <div class="stat-item"><p class="stat-number">8+</p><p class="stat-desc">Years of experience</p></div>
-      <div class="stat-item"><p class="stat-number">40+</p><p class="stat-desc">Athlete Clients</p></div>
-      <div class="stat-item"><p class="stat-number">100+</p><p class="stat-desc">Brand Deals Executed</p></div>
-    </div>
   </div>
 </section>
 
@@ -255,7 +244,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
 
         <div class="athlete-card">
           <div class="logo-box" style="width:100%;height:150px;background:#ffffff;border-radius:4px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;padding:1rem;">
-            <img src="assets/ubisoft.jpg" alt="Ubisoft" style="max-height:100%;max-width:100%;object-fit:contain;">
+            <img src="assets/ubisoft.png" alt="Ubisoft" style="max-height:100%;max-width:100%;object-fit:contain;">
           </div>
           <p class="athlete-name">Ubisoft</p>
           <p class="athlete-league">Austin Ekeler — NFL</p>
@@ -472,7 +461,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
       <a href="https://www.linkedin.com/in/david-artzi" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;background:#111;border:0.5px solid var(--gray-3);text-decoration:none;">
         <div>
           <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:4px;">LinkedIn</p>
-          <p style="font-size:1rem;font-weight:500;color:#ffffff;">linkedin.com/in/david-artzi</p>
+          <p style="font-size:1rem;font-weight:500;color:#ffffff;">in/david-artzi</p>
         </div>
         <span style="font-size:20px;color:rgba(255,255,255,0.3);">→</span>
       </a>
@@ -495,7 +484,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Austin Ekeler — NFL</p>
     <h2 class="wp-title">Ubisoft — Tom Clancy's Rainbow Six Siege</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/ubisoft.jpg" alt="Ubisoft" style="height:100px;object-fit:contain;">
+      <img src="assets/ubisoft.png" alt="Ubisoft" style="height:100px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
@@ -515,7 +504,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Austin Ekeler — NFL</p>
     <h2 class="wp-title">Best Buy x Bleacher Report</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/bestbuy_logo.png" alt="Best Buy" style="height:100px;object-fit:contain;">
+      <img src="assets/bestbuy_logo.png" alt="Best Buy" style="height:100px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
@@ -569,7 +558,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Austin Ekeler — NFL</p>
     <h2 class="wp-title">Shock Doctor</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/shockdoctor_logo.png" alt="Shock Doctor" style="height:100px;object-fit:contain;">
+      <img src="assets/shockdoctor_logo.png" alt="Shock Doctor" style="height:100px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
@@ -592,7 +581,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Austin Ekeler &amp; Justin Herbert — NFL</p>
     <h2 class="wp-title">NFL — Fuel Up to Play 60 x Dairy Alliance</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/futp_logo.png" alt="Fuel Up to Play 60" style="height:100px;object-fit:contain;">
+      <img src="assets/futp_logo.png" alt="Fuel Up to Play 60" style="height:100px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
@@ -728,7 +717,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Tommy DeVito — NFL</p>
     <h2 class="wp-title">Rao's Homemade — "Tommy Cutlets"</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/raos_logo.png" alt="Rao's Homemade" style="height:100px;object-fit:contain;">
+      <img src="assets/raos_logo.png" alt="Rao's Homemade" style="height:100px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
@@ -824,7 +813,7 @@ footer p { font-size: 12px; color: var(--text-muted); }
     <p class="wp-eyebrow">Group Campaign — NIL</p>
     <h2 class="wp-title">Vita Coco</h2>
     <div style="display:flex;justify-content:center;margin-bottom:2.5rem;">
-      <img src="assets/vitacoco_logo.png" alt="Vita Coco" style="height:80px;object-fit:contain;">
+      <img src="assets/vitacoco_logo.png" alt="Vita Coco" style="height:80px;object-fit:contain;background:#fff;border-radius:8px;padding:1.25rem 1.5rem;">
     </div>
     <div class="camp-list">
       <div class="camp-block" style="border-top:none;padding-top:0;">
